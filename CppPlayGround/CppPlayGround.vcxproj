@@ -81,6 +81,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Try_source_location.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Try_source_location.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
