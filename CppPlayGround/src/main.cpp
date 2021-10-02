@@ -1,6 +1,8 @@
-#include <iostream>
+#include "Try_source_location.h"
+
 
 int main() {
-	std::cout << "test" << std::endl;
+	Try_source_location().current();
+	Try_source_location().currentCaller();
 	return 0;
 }
