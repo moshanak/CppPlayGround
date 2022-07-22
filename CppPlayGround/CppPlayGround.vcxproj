@@ -80,11 +80,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\concept_demo.cpp" />
     <ClCompile Include="src\consistent_comparison.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Try_source_location.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\concept_demo.h" />
     <ClInclude Include="src\consistent_comparison.h" />
     <ClInclude Include="src\Try_source_location.h" />
   </ItemGroup>
