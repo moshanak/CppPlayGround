@@ -1,30 +1,29 @@
-#include "concept_demo.h"
 #include <concepts>
 #include <iostream>
 
 #if 1
-// ”’lŒ^(®”or•‚“®¬”“_”)‚ğ”»’è‚·‚éƒRƒ“ƒZƒvƒg
+// æ•°å€¤å‹(æ•´æ•°oræµ®å‹•å°æ•°ç‚¹æ•°)ã‚’åˆ¤å®šã™ã‚‹ã‚³ãƒ³ã‚»ãƒ—ãƒˆ
 template <typename T>
 concept Number = std::integral<T> || std::floating_point<T>;
 
-// #1 ƒvƒ‰ƒCƒ}ƒŠŠÖ”ƒeƒ“ƒvƒŒ[ƒg(ŠÈ—ª\•¶)
+// #1 ãƒ—ãƒ©ã‚¤ãƒãƒªé–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ(ç°¡ç•¥æ§‹æ–‡)
 void twice(auto) {
 	std::cout << "*" << std::endl;
 }
 
-// #2 ”’lŒ^‚É‘Î‚µ‚Ä—Dæ‚³‚ê‚éŠÖ”ƒeƒ“ƒvƒŒ[ƒg(ŠÈ—ª\•¶)
+// #2 æ•°å€¤å‹ã«å¯¾ã—ã¦å„ªå…ˆã•ã‚Œã‚‹é–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ(ç°¡ç•¥æ§‹æ–‡)
 void twice(Number auto x) {
 	std::cout << (x * 2) << std::endl;
 }
 
-// #3 •„†‚È‚µ®”Œ^‚É‘Î‚µ‚ÄÅ—Dæ‚³‚ê‚éŠÖ”ƒeƒ“ƒvƒŒ[ƒg(ŠÈ—ª\•¶)
+// #3 ç¬¦å·ãªã—æ•´æ•°å‹ã«å¯¾ã—ã¦æœ€å„ªå…ˆã•ã‚Œã‚‹é–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ(ç°¡ç•¥æ§‹æ–‡)
 void twice(std::unsigned_integral auto x) {
 	std::cout << (x * 2) << "u" << std::endl;
 }
 #elif 0
-//C++17ˆÈ‘O‚Ì‘‚«•û1
+//C++17ä»¥å‰ã®æ›¸ãæ–¹1
 
-// ŠÖ”ƒI[ƒo[ƒ[ƒh
+// é–¢æ•°ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 void twice(...) {
 	std::cout << "*" << std::endl;
 }
@@ -58,29 +57,29 @@ void twice(unsigned long long x) {
 }
 
 #else
-//C++17ˆÈ‘O‚Ì‘‚«•û2
-//ŠÖ”ƒeƒ“ƒvƒŒ[ƒg
+//C++17ä»¥å‰ã®æ›¸ãæ–¹2
+//é–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 
-// ”’lŒ^(®”or•‚“®¬”“_”)‚ğ”»’è‚·‚éƒƒ^ŠÖ”
+// æ•°å€¤å‹(æ•´æ•°oræµ®å‹•å°æ•°ç‚¹æ•°)ã‚’åˆ¤å®šã™ã‚‹ãƒ¡ã‚¿é–¢æ•°
 template <typename T>
 struct is_number : std::integral_constant<bool, std::is_integral<T>::value || std::is_floating_point<T>::value>
 {};
 
-// #1 ”’lŒ^ˆÈŠO‚É‘Î‚µ‚Ä—LŒø‚Æ‚È‚éŠÖ”ƒeƒ“ƒvƒŒ[ƒg
+// #1 æ•°å€¤å‹ä»¥å¤–ã«å¯¾ã—ã¦æœ‰åŠ¹ã¨ãªã‚‹é–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 template <typename T>
 typename std::enable_if<!is_number<T>::value>::type
 twice(T) {
 	std::cout << "*" << std::endl;
 }
 
-// #2 ”’lŒ^‚©‚Â•„†‚È‚µ®”Œ^ˆÈŠO‚É‘Î‚µ‚Ä—LŒø‚Æ‚È‚éŠÖ”ƒeƒ“ƒvƒŒ[ƒg
+// #2 æ•°å€¤å‹ã‹ã¤ç¬¦å·ãªã—æ•´æ•°å‹ä»¥å¤–ã«å¯¾ã—ã¦æœ‰åŠ¹ã¨ãªã‚‹é–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 template <typename T>
 typename std::enable_if<is_number<T>::value && !std::is_unsigned<T>::value>::type
 twice(T x) {
 	std::cout << (x * 2) << std::endl;
 }
 
-// #3 ”’lŒ^‚©‚Â•„†‚È‚µ®”Œ^‚É‘Î‚µ‚Ä—LŒø‚Æ‚È‚éŠÖ”ƒeƒ“ƒvƒŒ[ƒg
+// #3 æ•°å€¤å‹ã‹ã¤ç¬¦å·ãªã—æ•´æ•°å‹ã«å¯¾ã—ã¦æœ‰åŠ¹ã¨ãªã‚‹é–¢æ•°ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆ
 template <typename T>
 typename std::enable_if<is_number<T>::value&& std::is_unsigned<T>::value>::type
 twice(T x) {
@@ -88,13 +87,15 @@ twice(T x) {
 }
 #endif
 
-void concept_demo::demo()
+int main()
 {
-	//”’l‚Í2”{
+	//æ•°å€¤ã¯2å€
 	twice(1);
 	twice(1.0);
-	//•„†‚È‚µ®”‚Í––”ö‚Éu‚ğ•t‚¯‚é
+	//ç¬¦å·ãªã—æ•´æ•°ã¯æœ«å°¾ã«uã‚’ä»˜ã‘ã‚‹
 	twice(1u);
-	//‚»‚êˆÈŠO‚Í * ‚ğo—Í
+	//ãã‚Œä»¥å¤–ã¯ * ã‚’å‡ºåŠ›
 	twice("aaa");
+
+	return 0;
 }

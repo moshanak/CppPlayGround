@@ -1,24 +1,27 @@
-#include "Try_source_location.h"
+#include "OtherFile.h"
 #include <iostream>
 
-void Try_source_location::current()
+void OtherFile::current()
 {
 	const std::source_location location = std::source_location::current();
-	//s”Ô†
+	// è¡Œç•ªå·
 	std::cout << location.line() << std::endl;
-	//—ñ”Ô†
+	// åˆ—ç•ªå·
 	std::cout << location.column() << std::endl;
-	//ƒtƒ@ƒCƒ‹–¼B‚·‚Æƒtƒ@ƒCƒ‹‚Ìƒtƒ‹ƒpƒX‚ª•Ô‚Á‚Ä‚«‚½B
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹
 	std::cout << location.file_name() << std::endl;
-	//ŠÖ”–¼
+	// é–¢æ•°å
 	std::cout << location.function_name() << std::endl;
+
+	std::cout << std::endl;
 }
 
-void Try_source_location::currentCaller(std::source_location location)
+void OtherFile::currentCaller(std::source_location location)
 {
-	//‚·‚×‚ÄŒÄ‚Ño‚µŒ³‚Ìî•ñ‚É‚È‚é
+	// ã™ã¹ã¦å‘¼ã³å‡ºã—å…ƒã®æƒ…å ±ã«ãªã‚‹
 	std::cout << location.line() << std::endl;
 	std::cout << location.column() << std::endl;
 	std::cout << location.file_name() << std::endl;
 	std::cout << location.function_name() << std::endl;
+	std::cout << std::endl;
 }

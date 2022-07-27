@@ -1,7 +1,6 @@
-#include <compare>  //<=>—˜—p‚Ìê‡•K{
+#include <compare>  //<=>åˆ©ç”¨ã®å ´åˆå¿…é ˆ
 #include <iostream>
 #include <string>
-#include "consistent_comparison.h"
 
 struct C {
 	int x;
@@ -9,7 +8,7 @@ struct C {
 	double v;
 	char str[32];
 
-	//<=>‚ğpublic‚Å’è‹`‚µ‚Ä‚¨‚­‚±‚Æ‚ÅA‚»‚Ì‘¼‚Ì‰‰Zq‚ª“±o‚³‚ê‚é
+	//<=>ã‚’publicã§å®šç¾©ã—ã¦ãŠãã“ã¨ã§ã€ãã®ä»–ã®æ¼”ç®—å­ãŒå°å‡ºã•ã‚Œã‚‹
 	auto operator<=>(const C&) const = default;
 	//std::partial_ordering operator<=>(const C&) const = default;
 };
@@ -56,10 +55,10 @@ struct D {
 
 	//auto operator<=>(const D&) const = default;
 
-	// “Æ©‚É <=> ‚ğÀ‘•‚·‚é—áB
-	// ”äŠrƒJƒeƒSƒŠŒ^‚ğ‰½‚É‚·‚é‚©‚ÍA‚Ç‚Ì‚æ‚¤‚È”äŠr‚ğ‚·‚é‚©‚ÅAg‚¢•ª‚¯‚ª•K—v‚É‚È‚é
+	// ç‹¬è‡ªã« <=> ã‚’å®Ÿè£…ã™ã‚‹ä¾‹ã€‚
+	// æ¯”è¼ƒã‚«ãƒ†ã‚´ãƒªå‹ã‚’ä½•ã«ã™ã‚‹ã‹ã¯ã€ã©ã®ã‚ˆã†ãªæ¯”è¼ƒã‚’ã™ã‚‹ã‹ã§ã€ä½¿ã„åˆ†ã‘ãŒå¿…è¦ã«ãªã‚‹
 	std::weak_ordering operator<=>(const D& that) const {
-		//‘å•¶š¬•¶š‚ğ“¯’l‚Æ‚µ‚Äˆµ‚Á‚Ä”äŠr
+		//å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒå€¤ã¨ã—ã¦æ‰±ã£ã¦æ¯”è¼ƒ
 		for (std::size_t i = 0; i < this->str.size(); ++i) {
 			char l1 = std::tolower(this->str[i]);
 			char l2 = std::tolower(that.str[i]);
@@ -71,7 +70,7 @@ struct D {
 	}
 
 	//std::strong_ordering operator<=>(const D& that) const {
-	//	//‘å•¶š¬•¶š‚ğ“¯’l‚Æ‚µ‚Äˆµ‚Á‚Ä”äŠr
+	//	//å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒå€¤ã¨ã—ã¦æ‰±ã£ã¦æ¯”è¼ƒ
 	//	for (std::size_t i = 0; i < this->str.size(); ++i) {
 	//		char l1 = std::tolower(this->str[i]);
 	//		char l2 = std::tolower(that.str[i]);
@@ -83,7 +82,7 @@ struct D {
 	//}
 
 	//std::partial_ordering operator<=>(const D& that) const {
-	//	//‘å•¶š¬•¶š‚ğ“¯’l‚Æ‚µ‚Äˆµ‚Á‚Ä”äŠr
+	//	//å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒå€¤ã¨ã—ã¦æ‰±ã£ã¦æ¯”è¼ƒ
 	//	for (std::size_t i = 0; i < this->str.size(); ++i) {
 	//		char l1 = std::tolower(this->str[i]);
 	//		char l2 = std::tolower(that.str[i]);
@@ -94,11 +93,11 @@ struct D {
 	//	return std::partial_ordering::equivalent;
 	//}
 
-	// “Æ©‚É <=> ‚ğÀ‘•‚·‚éê‡‚ÍA== ‚Æ != ‚Í©“®‚ÅˆÃ–Ù“I‚É‚Í’è‹`‚³‚ê‚È‚­‚È‚éB
-	// ‚»‚Ì‚½‚ßA== ‚àÀ‘•‚·‚é•K—v‚ª‚ ‚éB
-	// != ‚Í•s—v‚ÅA== ‚ğÀ‘•‚·‚ê‚ÎˆÃ–Ù“I‚É’è‹`‚³‚ê‚éB
+	// ç‹¬è‡ªã« <=> ã‚’å®Ÿè£…ã™ã‚‹å ´åˆã¯ã€== ã¨ != ã¯è‡ªå‹•ã§æš—é»™çš„ã«ã¯å®šç¾©ã•ã‚Œãªããªã‚‹ã€‚
+	// ãã®ãŸã‚ã€== ã‚‚å®Ÿè£…ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+	// != ã¯ä¸è¦ã§ã€== ã‚’å®Ÿè£…ã™ã‚Œã°æš—é»™çš„ã«å®šç¾©ã•ã‚Œã‚‹ã€‚
 	bool operator==(const D& that) const {
-		//‘å•¶š¬•¶š‚ğ“¯’l‚Æ‚µ‚Äˆµ‚Á‚Ä”äŠr
+		//å¤§æ–‡å­—å°æ–‡å­—ã‚’åŒå€¤ã¨ã—ã¦æ‰±ã£ã¦æ¯”è¼ƒ
 		for (std::size_t i = 0; i < this->str.size(); ++i) {
 			if (std::tolower(this->str[i]) != std::tolower(that.str[i])) return false;
 		}
@@ -153,14 +152,14 @@ struct F
 //	std::strong_ordering operator<=>(const F&) const = default;
 //};
 
-void consistent_comparison::demo()
+int main()
 {
 	std::cout << std::boolalpha;
 
 	oldC oldC1 = { 10, 20, 3.1415, "Three-way Comparison" };
 	oldC oldC2 = { 10, 20, 3.1415, "Spaceship Operator" };
 
-	//¡‚Ü‚Å‚Ì”äŠr
+	//ä»Šã¾ã§ã®æ¯”è¼ƒ
 	std::cout << (oldC1 < oldC2) << "\t(oldC1  < oldC2)" << std::endl;
 	std::cout << (oldC1 <= oldC2) << "\t(oldC1  <= oldC2)" << std::endl;
 	std::cout << (oldC1 > oldC2) << "\t(oldC1  > oldC2)" << std::endl;
@@ -173,14 +172,14 @@ void consistent_comparison::demo()
 	C c2 = { 10, 20, 3.1415, "Spaceship Operator" };
 	//c2 = c1;
 
-	//O•û”äŠr‰‰Zq‚»‚Ì‚à‚Ì‚É‚æ‚é”äŠr
+	//ä¸‰æ–¹æ¯”è¼ƒæ¼”ç®—å­ãã®ã‚‚ã®ã«ã‚ˆã‚‹æ¯”è¼ƒ
 	std::cout << ((c1 <=> c2) == 0) << "\t((c1 <=> c2) == 0)" << std::endl;
 	std::cout << ((c1 <=> c2) < 0) << "\t((c1 <=> c2) < 0)" << std::endl;
 	std::cout << ((c1 <=> c2) > 0) << "\t((c1 <=> c2) > 0)" << std::endl;
 	std::cout << std::endl;
 
-	//O•û”äŠr‰‰Zq‚ÌŒ‹‰Ê‚Í bool Œ^‚Å‚Í‚È‚­A”äŠrƒJƒeƒSƒŠŒ^‚É‚È‚é
-	//”äŠrƒJƒeƒSƒŠŒ^‚ÍAãq‚Ì‚æ‚¤‚É 0 ‚Æ‚¾‚¯”äŠr‰Â”\‚ÈŒ^
+	//ä¸‰æ–¹æ¯”è¼ƒæ¼”ç®—å­ã®çµæœã¯ bool å‹ã§ã¯ãªãã€æ¯”è¼ƒã‚«ãƒ†ã‚´ãƒªå‹ã«ãªã‚‹
+	//æ¯”è¼ƒã‚«ãƒ†ã‚´ãƒªå‹ã¯ã€ä¸Šè¿°ã®ã‚ˆã†ã« 0 ã¨ã ã‘æ¯”è¼ƒå¯èƒ½ãªå‹
 	std::cout << typeid(c1 <=> c2).name() << std::endl;
 	std::cout << typeid(1 <=> 2).name() << std::endl;
 	std::cout << typeid(std::string("aaa") <=> std::string("bbb")).name() << std::endl;
@@ -193,8 +192,8 @@ void consistent_comparison::demo()
 	std::cout << typeid(c1 != c2).name() << std::endl;
 	std::cout << std::endl;
 
-	//ƒNƒ‰ƒXC‚Í6‚Â‚Ì‰‰Zq‚É‚æ‚é”äŠr‚ª‰Â”\
-	//default‚Å‚ÍéŒ¾‡‚É”äŠr‚³‚ê‚é‚½‚ßAx -> y -> v -> str[0]EEEstr[31] ‚Ì‡‚É”äŠr‚³‚ê‚é
+	//ã‚¯ãƒ©ã‚¹Cã¯6ã¤ã®æ¼”ç®—å­ã«ã‚ˆã‚‹æ¯”è¼ƒãŒå¯èƒ½
+	//defaultã§ã¯å®£è¨€é †ã«æ¯”è¼ƒã•ã‚Œã‚‹ãŸã‚ã€x -> y -> v -> str[0]ãƒ»ãƒ»ãƒ»str[31] ã®é †ã«æ¯”è¼ƒã•ã‚Œã‚‹
 	std::cout << (c1 < c2) << "\t(c1 < c2)" << std::endl;
 	std::cout << (c1 <= c2) << "\t(c1 <= c2)" << std::endl;
 	std::cout << (c1 > c2) << "\t(c1 > c2)" << std::endl;
@@ -203,7 +202,7 @@ void consistent_comparison::demo()
 	std::cout << (c1 != c2) << "\t(c1 != c2)" << std::endl;
 	std::cout << std::endl;
 
-	//“Æ©‚É <=> ‚ğ’è‹`‚µ‚½—á
+	//ç‹¬è‡ªã« <=> ã‚’å®šç¾©ã—ãŸä¾‹
 	D d1{ "test" };
 	D d2{ "Test" };
 	std::cout << (d1 < d2) << "\t(d1 < d2)" << std::endl;
@@ -214,7 +213,7 @@ void consistent_comparison::demo()
 	std::cout << (d1 != d2) << "\t(d1 != d2)" << std::endl;
 	std::cout << std::endl;
 
-	//<=> ‚ğ default ’è‹`‚µ‚Ä‚àA©“®‚Å delete ‚³‚ê‚éƒP[ƒX‚à‚ ‚é
+	//<=> ã‚’ default å®šç¾©ã—ã¦ã‚‚ã€è‡ªå‹•ã§ delete ã•ã‚Œã‚‹ã‚±ãƒ¼ã‚¹ã‚‚ã‚ã‚‹
 	F f1{ 1 };
 	F f2{ 2 };
 	std::cout << (f1 < f2) << "\t(f1 < f2)" << std::endl;
@@ -225,9 +224,11 @@ void consistent_comparison::demo()
 	std::cout << (f1 != f2) << "\t(f1 != f2)" << std::endl;
 	std::cout << std::endl;
 
-	//[ŠŠ´]
-	// O•û”äŠr‰‰Zq‚»‚Ì‚à‚Ì‚É‚æ‚é”äŠr‚ÍAƒƒŠƒbƒg‚ğŠ´‚¶‚È‚¢B
-	// ”äŠrƒJƒeƒSƒŠŒ^‚Ìg‚¢•ª‚¯‚Í–Ê“|‚ÉŠ´‚¶‚éB
-	// ƒNƒ‰ƒX‚Édefault‚Å‚U‚Â‚Ì‰‰Zq‚ğ’è‹`‚·‚éê‡‚Í•Ö—˜B
-	// “Æ©‚Ì’è‹`‚ğ‚µ‚½‚¢ê‡‚ÍA‚í‚´‚í‚´O•û”äŠr‰‰Zq‚ğg‚í‚È‚­‚Ä‚à—Ç‚¢‚Æv‚¤Bi”äŠrƒJƒeƒSƒŠŒ^‚ğg‚¢‚±‚È‚·•K—v‚ª‚ ‚éBj
+	//[æ‰€æ„Ÿ]
+	// ä¸‰æ–¹æ¯”è¼ƒæ¼”ç®—å­ãã®ã‚‚ã®ã«ã‚ˆã‚‹æ¯”è¼ƒã¯ã€ãƒ¡ãƒªãƒƒãƒˆã‚’æ„Ÿã˜ãªã„ã€‚
+	// æ¯”è¼ƒã‚«ãƒ†ã‚´ãƒªå‹ã®ä½¿ã„åˆ†ã‘ã¯é¢å€’ã«æ„Ÿã˜ã‚‹ã€‚
+	// ã‚¯ãƒ©ã‚¹ã«defaultã§ï¼–ã¤ã®æ¼”ç®—å­ã‚’å®šç¾©ã™ã‚‹å ´åˆã¯ä¾¿åˆ©ã€‚
+	// ç‹¬è‡ªã®å®šç¾©ã‚’ã—ãŸã„å ´åˆã¯ã€ã‚ã–ã‚ã–ä¸‰æ–¹æ¯”è¼ƒæ¼”ç®—å­ã‚’ä½¿ã‚ãªãã¦ã‚‚è‰¯ã„ã¨æ€ã†ã€‚ï¼ˆæ¯”è¼ƒã‚«ãƒ†ã‚´ãƒªå‹ã‚’ä½¿ã„ã“ãªã™å¿…è¦ãŒã‚ã‚‹ã€‚ï¼‰
+
+	return 0;
 }
