@@ -1,7 +1,3 @@
-#include <compare>  //<=>利用の場合必須
-#include <iostream>
-#include <string>
-
 /*
 
 一貫比較
@@ -17,7 +13,15 @@
 　比較カテゴリ型の使い分けは面倒に感じる。
 　クラスで default でなく独自に <, >, =, !=, <=, >= を定義したい場合、 <=> で定義しなくてで良いと思う。（比較カテゴリ型を使いこなす必要があるため。）
 
+・cpprefjp
+　https://cpprefjp.github.io/lang/cpp20/consistent_comparison.html
+
  */
+
+
+#include <compare>  //<=>利用の場合必須
+#include <iostream>
+#include <string>
 
 struct C {
 	int x;

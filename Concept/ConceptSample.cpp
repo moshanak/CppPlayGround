@@ -1,9 +1,3 @@
-#include <concepts>
-#include <iostream>
-#include <iomanip>
-#include <limits>
-#include <typeinfo>
-
 /*
 
 コンセプト
@@ -14,10 +8,20 @@
 ・メリット：
 　テンプレートの制約の実装がしやすくなる。C++20より前でも制約を付ける方法はあったが、実装が複雑で可読性が悪かった。
 
- ・所感
- 　テンプレートを実装するときは、常にコンセプトで制約を設けると、読み手は理解しやすいコードになると思う。
+・所感
+ テンプレートを実装するときは、常にコンセプトで制約を設けると、読み手は理解しやすいコードになると思う。
+
+・cpprefjp
+　https://cpprefjp.github.io/lang/cpp20/concepts.html
 
 */
+
+#include <concepts>
+#include <iostream>
+#include <iomanip>
+#include <limits>
+#include <typeinfo>
+
 
 //------------------------------------------------------------------------------
 // 例１　標準機能のコンセプトを使う
