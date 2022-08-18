@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Module", "Module\Module.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Co-routine", "Co-routine\Co-routine.vcxproj", "{1442849A-5830-4F08-9E4C-A74855A4FD9C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConstantExpressions", "ConstantExpressions\ConstantExpressions.vcxproj", "{213ECD16-AB97-40F8-A775-5F9A90C6A295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{1442849A-5830-4F08-9E4C-A74855A4FD9C}.Release|x64.Build.0 = Release|x64
 		{1442849A-5830-4F08-9E4C-A74855A4FD9C}.Release|x86.ActiveCfg = Release|Win32
 		{1442849A-5830-4F08-9E4C-A74855A4FD9C}.Release|x86.Build.0 = Release|Win32
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Debug|x64.ActiveCfg = Debug|x64
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Debug|x64.Build.0 = Debug|x64
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Debug|x86.ActiveCfg = Debug|Win32
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Debug|x86.Build.0 = Debug|Win32
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Release|x64.ActiveCfg = Release|x64
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Release|x64.Build.0 = Release|x64
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Release|x86.ActiveCfg = Release|Win32
+		{213ECD16-AB97-40F8-A775-5F9A90C6A295}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
