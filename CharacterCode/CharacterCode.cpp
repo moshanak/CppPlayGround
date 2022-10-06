@@ -14,11 +14,11 @@
 	https://cpprefjp.github.io/lang/cpp20/make_char16t_char32t_string_literals_be_utf16_32.html
 
 ・所感
-	現状の開発では、大きな影響はないと思う。
-	今まで通り、char,string,QString を使うで十分だろう。
+	現状の開発で大きな影響はないと思うが、char は char8_t に変えると明確に文字コードが分かるため、変えると良いだろう。
 		* char,string ・・・ utf-8 (visual studio の設定 [/source-charset:utf-8 /execution-charset:utf-8])
+		* char8_t ・・・ utf-8
 		* QString ・・・ utf-16
-	意図的に QString から string への変換などで、u8path などの C++ の API を呼んでいる箇所は影響が出るため、注意。
+	また、意図的に QString から string への変換などで、u8path などの C++ の API を呼んでいる箇所は影響が出るため、注意。
 */
 
 #include <iostream>

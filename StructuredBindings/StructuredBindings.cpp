@@ -38,7 +38,7 @@ auto getCurrentTimeInfo()
 void displayTimeInfo()
 {
 #if 0
-	auto [year, month, day, hour, minute, second] = getCurrentTimeInfo();	//C++20 NG
+	auto [year, month, day, hour, minute, second] = getCurrentTimeInfo();	//C++17 OK
 #else
 	static auto [year, month, day, hour, minute, second] = getCurrentTimeInfo();	//C++20 OK
 #endif
