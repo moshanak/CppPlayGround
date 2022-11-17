@@ -1,0 +1,222 @@
+= 予定
+
+== 新ライブラリ
+[cols="a,a", options="autowidth"]
+|===
+|×|* バージョン情報ライブラリとして<version>を追加。ここでは、実装依存の情報 (バージョンやリリース日付など) が標準ライブラリの実装によって定義される
+||×の理由) 各機能が使えるかどうか調べるマクロなので使うことはない
+|○|* <chrono>ライブラリに、カレンダーとタイムゾーンの機能を拡張
+|○|* 任意のシーケンスの部分シーケンスを参照するライブラリとして<span>を追加
+|○|* 文字列フォーマットライブラリとして<format>を追加
+|○|* 出力ストリームを同期するライブラリとして<syncstream>を追加
+|×|* 三方比較ライブラリとして<compare>を追加
+||×の理由) 三方比較演算子はすでにやったのでスキップ
+|○|* 数値ライブラリとして<numbers>を追加。数学定数が定義される
+|○|* ビット操作ライブラリとして<bit>を追加
+** Strict Aliasing規則に抵触しないビットレベルの再解釈キャストであるstd::bit_cast()関数を追加
+** 1ビットだけ立っている値をもっているかを判定するstd::has_single_bit()関数を追加
+** 整数値を2の累乗値に切り上げるstd::bit_ceil()関数、整数値を2の累乗値に切り下げるstd::bit_floor()関数を追加
+** 値を表現するために必要なビット幅を求めるstd::bit_width()関数を追加
+** 循環ビットシフトを行うstd::rotl()とstd::rotr()を追加
+** 連続した0もしくは1のビットを数えるstd::countl_zero()、std::countl_one()、std::countr_zero()、std::countr_one()、および立っているビットを数えるstd::popcount()を追加
+** エンディアンを表す列挙型としてstd::endianを追加
+|×|* 型制約のための要件ライブラリとして<concepts>を追加
+||×の理由) コンセプトはすでにやったのでスキップ
+|×|* 言語機能であるコルーチンを制御するライブラリとして<coroutine>を追加
+||×の理由) コルーチンはすでにやったのでスキップ
+|未定|* スレッドの実行を停止させるメカニズムとして<stop_token>を追加し、停止に対応したスレッドクラスとして<thread>にstd::jthreadクラスを追加
+|未定|* 軽量な同期プリミティブであるセマフォのライブラリとして<semaphore>を追加
+|未定|* スレッド調整メカニズムとして、ラッチライブラリの<latch>、バリアライブラリの<barrier>を追加
+|未定|* イテレータの組ではなく、コンテナや配列、部分的なコンテナなどを扱う範囲ライブラリとして<ranges>を追加
+|未定|* 既存のイテレータの組を扱うアルゴリズムは、std::ranges名前空間に範囲版アルゴリズムが追加される
+|未定|* ソースコードの位置を取得するライブラリとして<source_location>を追加
+|===
+
+== 取り決め
+[cols="a,a", options="autowidth"]
+|===
+|未定|* td名前空間以下の関数テンプレートをユーザーが特殊化することを禁止する (参照 : P0551R3)
+|===
+
+== コンテナ
+[cols="a,a", options="autowidth"]
+|===
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+順序付き連想コンテナと同様に、非順序連想コンテナの検索処理で、一時オブジェクトが生成されるコストを抑える拡張を追加。キー等値比較を行う関数オブジェクトとハッシュ計算を行う関数オブジェクトの両方にis_transparentが定義されていれば、透過的な検索が使用できる。std::hashクラスのページを参照
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+各コンテナの非メンバ関数として、要素を削除するstd::erase()関数とstd::erase_if()関数を追加
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+ std::forward_listとstd::listのメンバ関数remove()、remove_if()、unique()の戻り値型を、voidからContainer::size_typeに変更
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+std::arrayクラスの比較演算子、fill()メンバ関数、swap()メンバ関数、swap()非メンバ関数にconstexprを追加。このクラスのメンバ関数はすべてconstexprに対応した
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+ 組み込み配列をstd::arrayに変換する関数としてstd::to_array()を追加
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+ <iterator>に、符号付き整数としてコンテナの要素数を取得するstd::ssize()関数を追加
+|未定|* 連想コンテナに、要素がコンテナに含まれているかを判定するcontains()メンバ関数を追加
+ std::allocator、およびstd::vectorとstd::basic_stringをconstexpr対応
+|===
+
+== アルゴリズム
+[cols="a,a", options="autowidth"]
+|===
+|未定|* <algorithm>の多くの関数にconstexprを追加
+|未定|* <algorithm>に、要素位置をシフトするstd::shift_left()、std::shift_right()を追加
+|未定|* <algorithm>に三方比較による辞書順比較アルゴリズムstd::lexicographical_compare_three_way()を追加
+|未定|* 数値とポインタの中点を求める関数として、<numeric>にstd::midpoint()関数を追加
+|未定|* 浮動小数点数を線形補間する関数として、<cmath>にstd::lerp()関数を追加
+|未定|* <numeric>の数値計算アルゴリズムをムーブに対応
+|未定|* <numeric>の数値計算アルゴリズムにconstexprを追加
+|===
+
+== イテレータ
+[cols="a,a", options="autowidth"]
+|===
+|未定|* std::back_insert_iteratorクラス、std::front_insert_iteratorクラス、std::insert_iteratorクラスのコンストラクタ、代入演算子、間接参照演算子、インクリメント演算子、およびstd::back_inserter()、std::front_inserter()、std::inserter()にconstexprを追加。これらのクラスのメンバ関数はすべてconstexprに対応した
+|===
+
+== 関数オブジェクト
+[cols="a,a", options="autowidth"]
+|===
+|未定|* std::reference_wrapperクラス、std::ref()関数、std::cref()関数のテンプレートパラメータT型に不完全型を指定することを許可
+|未定|* メンバ関数の部分適用を簡単にするために、プレースホルダーの指定なく引数を先頭から順に束縛するstd::bind_front()関数を追加
+|未定|* std::invoke()、std::reference_wrapperの各操作、std::not_fn()、std::bind()、std::mem_fn()をconstexpr対応
+|未定|* コンセプトの導入にともない、<functional>に、受け取った値をそのまま返す関数オブジェクトstd::identityを追加
+|===
+
+== 文字列
+[cols="a,a", options="autowidth"]
+|===
+|未定|* std::basic_stringクラスとstd::basic_string_viewクラスに、先頭の部分文字列を判定するstarts_with()メンバ関数、末尾の部分文字列を判定するends_with()メンバ関数を追加
+|未定|* std::basic_string::reserve()メンバ関数の、メモリの縮小機能を削除し、伸長のみとする。
+|未定|* std::char_traitsクラスのmove()、copy()、assign()静的メンバ関数にconstexprを追加
+|===
+
+== 並行・並列処理
+[cols="a,a", options="autowidth"]
+|===
+|未定|* std::atomicクラスとstd::atomic_flagクラスのデフォルトコンストラクタが、値初期化するよう動作変更。これまではC言語との互換性のために未初期化となっていた
+|未定|* <memory>に、std::atomicクラスのstd::shared_ptrとstd::weak_ptrに対する特殊化を追加
+|未定|* std::atomicクラスの浮動小数点数型に対する特殊化を追加
+|未定|* アトミッククラスに対するブロッキング同期の機能としてwait()、notify_one()、notify_all()を追加
+|未定|* ロックフリーであることが保証されたアトミック整数型の別名としてatomic_signed_lock_freeとatomic_unsigned_lock_freeを追加
+|未定|* std::memory_orderの列挙子にスコープをもたせた
+|未定|* std::atomic_flagクラスに、bool値を読み込むメンバ関数test()を追加
+|未定|* 非アトミックなオブジェクトにアトミック操作を適用するためのクラスstd::atomic_refを追加
+|未定|* ベクトル化の実行ポリシーとして、<execution>にstd::execution::unsequenced_policy型とstd::execution::unseqタグを追加
+|===
+
+== 入出力
+[cols="a,a", options="autowidth"]
+|===
+|未定|* 同期ストリームの追加にともなって、<ostream>に、同期ストリーム関係の出力マニピュレータを追加
+|未定|* operator>>(basic_istream&, CharT*)をoperator>>(basic_istream&, CharT (&)[N])に修正
+|未定|* operator<<に、wchar_t (char版のみ)、char8_t、char16_t、char32_tのdelete宣言を追加
+|未定|* std::istream_iteratorについて、要件の書き方を整理し、振る舞いをより明確化
+|未定|* std::basic_stringbuf、std::basic_istringstream、std::basic_ostringstreamクラスに、アロケータを伝播させるためのインタフェースを追加
+|===
+
+== スマートポインタ
+[cols="a,a", options="autowidth"]
+|===
+|未定|* std::make_shared()とstd::allocate_shared()を配列に対応
+|未定|* スマートポインタをデフォルト初期化で構築するヘルパ関数として、std::make_unique_for_overwrite()、std::make_shared_for_overwrite()、std::allocate_shared_for_overwrite()を追加
+|未定|* ポインタを生ポインタに変換するstd::to_address()を追加
+|未定|* std::pointer_traits::pointer_to()関数にconstexprを追加
+|===
+
+== メモリ
+[cols="a,a", options="autowidth"]
+|===
+|未定|* <memory>に、Nバイトアライメントされたポインタであることをコンパイラに伝えるstd::assume_aligned()関数を追加
+|未定|* <memory>に、uses allocator構築をサポートするユーティリティ関数として、std::uses_allocator_construction_args()、std::make_obj_using_allocator()、std::uninitialized_construct_using_allocator()を追加
+|未定|* std::pmr::polymorphic_allocatorに、以下の変更を追加：
+|未定|* クラステンプレートのデフォルトテンプレート引数をstd::byte型とした
+|未定|* void*のバイト列をメモリ確保するallocate_bytes()、解放するdeallocate_bytes()メンバ関数を追加
+|未定|* 指定した型のメモリを確保するallocate_object()、解放するdeallocate_object()を追加
+|未定|* 指定した型のメモリ確保と構築をするnew_object()、破棄と解放をするdelete_object()を追加
+|===
+
+== ユーティリティ
+[cols="a,a", options="autowidth"]
+|===
+|未定|* <utility>に、符号付き整数と符号なし整数の安全な比較関数として、以下を追加：
+** std::cmp_equal()
+** std::cmp_not_equal()
+** std::cmp_less()
+** std::cmp_less_equal()
+** std::cmp_greater()
+** std::cmp_greater_equal()
+** std::in_range()
+|未定|* std::swap()関数にconstexprを追加
+|未定|* std::exchange()関数にconstexprを追加
+|未定|* std::complexクラスをconstexprに対応
+|未定|* std::pairクラスのコンストラクタ、代入演算子、swap()メンバ関数、swap()非メンバ関数にconstexprを追加。このクラスのメンバ関数はすべてconstexprに対応した
+|未定|* std::tupleクラスのコンストラクタ、代入演算子、swap()メンバ関数、swap()非メンバ関数にconstexprを追加。このクラスのメンバ関数はすべてconstexprに対応した
+|===
+
+== ファイルシステム
+[cols="a,a", options="autowidth"]
+|===
+|未定|* std::filesystem::create_directory()とstd::filesystem::create_directories()の仕様が直感的ではなく、すでにディレクトリが存在している場合にエラーとなっていた。C++20ではその状況ではエラーにならないようにする (エラーではなくfalseが返る)
+|===
+
+== 型特性
+[cols="a,a", options="autowidth"]
+|===
+|未定|* <type_traits>に、constexpr関数が定数式評価されたかを判定する特殊な関数std::is_constant_evaluated()を追加
+|未定|* <type_traits>に、型のCV修飾と参照を除去する型特性クラスとしてstd::remove_cvrefを追加
+|未定|* <type_traits>に、受け取った型をそのまま返すstd::type_identityを追加
+|未定|* <type_traits>に、例外送出せずに暗黙の型変換が可能かを判定するstd::is_nothrow_convertibleを追加
+|未定|* <type_traits>に、要素数が判明している配列型かを判定するstd::is_bounded_array、要素数が不明な配列型かを判定するstd::is_unbounded_arrayを追加
+|未定|* <type_traits>に、レイアウト互換性、ポインタ相互交換可能性を判定する以下の型特性を追加：
+|未定|* 2つの型にレイアウト互換があるかを判定するstd::is_layout_compatible
+|未定|* 2つのメンバポインタが互換な共通位置にあるかを判定するstd::is_corresponding_member()
+|未定|* 基底クラスと派生クラスの間でポインタ相互交換可能かを判定するstd::is_pointer_interconvertible_base_of
+|未定|* メンバポインタとクラスの間でポインタ相互交換可能かを判定するis_pointer_interconvertible_with_class()
+|未定|* <type_traits>に、std::reference_wrapper<T>型をT&型に展開するstd::unwrap_reference型特性、std::decay + std::reference_wrapper<T>型の展開をするstd::unwrap_ref_decay型特性を追加
+|===
+
+== 機能の非推奨化
+[cols="a,a", options="autowidth"]
+|===
+|未定|* 一貫比較機能によって比較演算子の定義が容易になったため、不要になった演算子の簡潔定義機能であるstd::rel_opsを非推奨化
+|未定|* std::basic_string::reserve()メンバ関数が、メモリの縮小をしなくなったため、デフォルト引数0を非推奨化
+|未定|* std::atomicクラスとstd::atomic_flagクラスのデフォルトコンストラクタが値初期化するようになったため、不要になった以下のアトミックオブジェクトの初期化機能を非推奨化：
+** std::atomic_init()関数
+** ATOMIC_VAR_INITマクロ
+** ATOMIC_FLAG_INITマクロ
+|===
+
+== 機能の削除
+[cols="a,a", options="autowidth"]
+|===
+|未定|* C++11でallocator_traitsクラスが導入されたことでC++17から非推奨化されていた、allocatorの以下のメンバを削除：
+** size_type型
+** difference_type型
+** pointer型
+** const_pointer型
+** reference型
+** const_reference型
+** rebind型
+** address()メンバ関数
+** allocate()メンバ関数のhintパラメータ
+** max_size()メンバ関数
+** construct()メンバ関数
+** destroy()メンバ関数
+|未定|* C++11でallocator_traitsクラスが導入されたことでC++17から非推奨化されていた、要素型を再束縛するためのallocator<void>特殊化を削除
+|未定|* C++17で非推奨化されていた、constexprで扱える型の分類であるis_literal_type型特性を削除
+|未定|* C++17で非推奨化されていた、一時的なメモリ確保のためのstd::get_temporary_buffer()関数とstd::return_temporary_buffer()関数を削除
+|未定|* C++17で非推奨化されていたraw_storage_iteratorクラスを削除
+|未定|* not_fn()の追加にともない、C++17から非推奨化されていた以下の機能を削除：
+** not1()関数
+** not2()関数
+** unary_negateクラス
+** binary_negateクラス
+** 標準関数オブジェクトのresult_type、argument_type、first_argument_type、second_argument_type型
+|未定|* C++17から非推奨化されていたshared_ptr::unique()を削除
+|未定|* invoke_resultの追加にともない、C++17から非推奨化されていたresult_ofを削除
+|未定|* C++17でのuncaught_exceptions()の追加にともない、非推奨化していたuncaught_exception()を削除
+|未定|* C++17で非推奨化されていたC互換ライブラリ<ccomplex>, <cstdalign>, <cstdbool>, <ctgmath>を削除。また、C++ではなにも定義されないC互換ライブラリ<ciso646>を削除
+|===
